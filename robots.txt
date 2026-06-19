@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hughott3.github.io/app-web-hth-com-cn/sitemap.xml
