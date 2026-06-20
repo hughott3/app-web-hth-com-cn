@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极速赛车 · 知识库入口页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fde9d8 0%, #f7d4b0 40%, #f1c29a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .page-wrapper {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 40px -10px rgba(160, 90, 30, 0.25), 0 8px 20px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem 2.2rem;
+            transition: all 0.2s ease;
+        }
+
+        /* 标题区 / hero */
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #623d1e;
+            border-left: 6px solid #d9864a;
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .hero-sub {
+            color: #7e5b38;
+            margin: 0.5rem 0 2rem 1.8rem;
+            font-size: 1.05rem;
+            font-weight: 400;
+            border-bottom: 1px dashed #dbb38c;
+            padding-bottom: 0.8rem;
+        }
+
+        /* 目录感网格：三列卡片布局（+ 宽信息块） */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin: 2rem 0 1.8rem;
+        }
+
+        .cat-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.4rem 1.2rem 1.2rem;
+            box-shadow: 0 4px 12px rgba(110, 60, 20, 0.08);
+            transition: transform 0.15s;
+            border: 1px solid #f2e2d2;
+        }
+
+        .cat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(150, 80, 30, 0.12);
+        }
+
+        .cat-card .emoji-badge {
+            font-size: 1.8rem;
+            display: inline-block;
+            margin-bottom: 0.3rem;
+        }
+
+        .cat-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4e331b;
+            margin: 0.2rem 0 0.5rem;
+        }
+
+        .cat-card p, .cat-card ul {
+            font-size: 0.92rem;
+            color: #5d4230;
+            line-height: 1.5;
+        }
+
+        .cat-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .cat-card li {
+            padding: 0.2rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .cat-card li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #c9743a;
+            font-weight: bold;
+        }
+
+        /* 说明区 + 提示区：双栏信息 */
+        .info-duo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .info-box {
+            flex: 1 1 240px;
+            background: #fbf6ef;
+            border-radius: 24px;
+            padding: 1.4rem 1.6rem;
+            border-left: 5px solid #d9864a;
+        }
+
+        .info-box h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #4d351f;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .info-box p, .info-box li {
+            font-size: 0.93rem;
+            line-height: 1.6;
+            color: #4f3a29;
+        }
+
+        .info-box ul {
+            padding-left: 1.2rem;
+        }
+
+        .tip-box {
+            background: #fffaf2;
+            border-left-color: #b37b4a;
+        }
+
+        /* 相关信息区（faq摘要+导航链接） */
+        .related-area {
+            background: #ffffffd9;
+            border-radius: 28px;
+            padding: 1.4rem 1.8rem 1.8rem;
+            margin: 1.8rem 0 0.8rem;
+            box-shadow: inset 0 1px 0 #f1dfcf, 0 6px 14px rgba(130, 60, 10, 0.06);
+        }
+
+        .related-area h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #4e351e;
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-mini {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 0.9rem 1.8rem;
+            margin: 0.5rem 0 1rem;
+        }
+
+        .faq-item {
+            padding: 0.6rem 0.6rem 0.6rem 1rem;
+            border-bottom: 1px solid #f0ded0;
+        }
+
+        .faq-item strong {
+            color: #6a462b;
+            font-weight: 600;
+            display: block;
+            font-size: 0.92rem;
+        }
+
+        .faq-item span {
+            font-size: 0.88rem;
+            color: #6a5542;
+        }
+
+        .link-chunk {
+            margin-top: 1.4rem;
+            border-top: 1px solid #eddaca;
+            padding-top: 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.5rem 1rem;
+        }
+
+        .link-chunk p {
+            font-size: 0.95rem;
+            color: #3b2b1f;
+        }
+
+        .inline-link {
+            background: #fff3e9;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #7a4d2a;
+            text-decoration: none;
+            border: 1px solid #dbb68c;
+            transition: background 0.15s, border-color 0.15s;
+            cursor: pointer;
+            display: inline-block;
+            margin: 0 0.1rem;
+        }
+
+        .inline-link:hover {
+            background: #e6d0bc;
+            border-color: #b27f57;
+            color: #3d2a19;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #7a684f;
+            text-align: center;
+            border-top: 1px solid #edd7c2;
+            padding-top: 1.5rem;
+            letter-spacing: 0.2px;
+        }
+
+        .footer-note span {
+            background: #fcf3e7;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .page-wrapper {
+                padding: 1.6rem 1.2rem;
+                border-radius: 32px;
+            }
+            .hero-title {
+                font-size: 1.6rem;
+                padding-left: 1rem;
+            }
+            .directory-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-duo {
+                flex-direction: column;
+            }
+            .faq-mini {
+                grid-template-columns: 1fr;
+            }
+            .link-chunk {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- hero -->
+    <div class="hero-title">🏁 极速赛车 · 知识库入口</div>
+    <div class="hero-sub">稳定入口 · 分类导航 · 实用说明</div>
+
+    <!-- 目录感卡片 -->
+    <div class="directory-grid">
+        <div class="cat-card">
+            <div class="emoji-badge">⚡</div>
+            <h3>速度与规则</h3>
+            <ul>
+                <li>赛事基础架构</li>
+                <li>计时与判定</li>
+                <li>车辆分级</li>
+            </ul>
+        </div>
+        <div class="cat-card">
+            <div class="emoji-badge">🛞</div>
+            <h3>操作手册</h3>
+            <ul>
+                <li>驾驶控制</li>
+                <li>赛道选择</li>
+                <li>实时数据</li>
+            </ul>
+        </div>
+        <div class="cat-card">
+            <div class="emoji-badge">🔧</div>
+            <h3>调校与配置</h3>
+            <ul>
+                <li>引擎调校</li>
+                <li>轮胎策略</li>
+                <li>辅助设置</li>
+            </ul>
+        </div>
+        <div class="cat-card">
+            <div class="emoji-badge">📊</div>
+            <h3>排行榜</h3>
+            <p>分段排名 · 历史记录 · 赛季统计</p>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区 -->
+    <div class="info-duo">
+        <div class="info-box">
+            <h4>📘 页面说明</h4>
+            <p>本页为<strong>极速赛车</strong>相关知识与指引的集中入口。内容整理自公开资料与常见问题，持续更新。您可以利用下方目录快速定位规则、调校、排行等模块。</p>
+            <p style="margin-top: 0.6rem;">所有信息仅供参考，具体以实际版本及比赛环境为准。</p>
+        </div>
+        <div class="info-box tip-box">
+            <h4>💡 使用提示</h4>
+            <ul>
+                <li>点击卡片可跳转至对应详情区（页面内锚点）</li>
+                <li>FAQ 摘要提供常见疑问速览</li>
+                <li>若需返回主站，句子中嵌有 <strong>「极速赛车」</strong> 链接</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 相关信息区 (FAQ 摘要 + 链接) -->
+    <div class="related-area">
+        <h4>📌 相关信息 · 常见问题摘要</h4>
+        <div class="faq-mini">
+            <div class="faq-item">
+                <strong>如何开始一局比赛？</strong>
+                <span>选择赛道与车辆，确认调校后即可进入排位。</span>
+            </div>
+            <div class="faq-item">
+                <strong>车辆调校是否影响手感？</strong>
+                <span>是的，悬挂、齿比与轮胎会显著改变操控特性。</span>
+            </div>
+            <div class="faq-item">
+                <strong>排行榜更新周期？</strong>
+                <span>每日刷新，赛季末进行结算与重置。</span>
+            </div>
+            <div class="faq-item">
+                <strong>是否有新手保护机制？</strong>
+                <span>初等级别匹配优先同分段玩家，辅助线默认开启。</span>
+            </div>
+        </div>
+
+        <!-- 嵌入 a 标签，严格文本 = 极速赛车 -->
+        <div class="link-chunk">
+            <p>若需访问主站，可直接前往 <a href="https://app-speedracing.com" class="inline-link">极速赛车</a> 查看完整功能与最新赛事。本页作为辅助入口，持续汇集要点。</p>
+            <p style="margin-top: 0.3rem;">您也可以在工作栏中随时使用 <a href="https://app-speedracing.com" class="inline-link">极速赛车</a> 直达页面。</p>
+        </div>
+    </div>
+
+    <!-- footer 小提示 -->
+    <div class="footer-note">
+        <span>📁 知识库 · 版本 2.3 &nbsp;|&nbsp; 内容更新于本月</span>
+    </div>
+
+</div>
+</body>
+</html>
