@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金年会 · 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+            background: #f0f7fa;
+            color: #1a2e3b;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* 开场区域 — 故事感 */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2.5rem 1.5rem 2rem;
+            background: linear-gradient(145deg, #d7eef5 0%, #b8dce8 100%);
+            border-radius: 32px;
+            box-shadow: 0 8px 20px rgba(30, 80, 90, 0.08);
+        }
+
+        .hero em {
+            display: inline-block;
+            font-style: normal;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: #2b6f7a;
+            background: rgba(255,255,255,0.7);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 1.2rem;
+            backdrop-filter: blur(2px);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            color: #0b3b44;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: #1c4f5c;
+            max-width: 600px;
+            margin: 0 auto 1.2rem;
+            font-weight: 350;
+        }
+
+        .hero .opener {
+            font-size: 1rem;
+            color: #1d5563;
+            background: rgba(255,255,255,0.5);
+            padding: 0.8rem 1.6rem;
+            border-radius: 60px;
+            display: inline-block;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        /* 承接段落 — 站点说明 */
+        .intro-note {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem 2rem 2.2rem;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 4px 12px rgba(0,40,50,0.04);
+            border: 1px solid #d2e9f0;
+        }
+
+        .intro-note p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .intro-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-note strong {
+            color: #126b7a;
+            font-weight: 500;
+        }
+
+        .intro-note a {
+            color: #126b7a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .intro-note a:hover {
+            border-bottom-color: #2b9aa8;
+        }
+
+        /* 特点卡片网格 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.5rem;
+            margin: 2.8rem 0 2.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.8rem 1.5rem;
+            border-radius: 24px;
+            box-shadow: 0 2px 8px rgba(30, 70, 80, 0.04);
+            border: 1px solid #cee7ef;
+            transition: transform 0.18s ease, box-shadow 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(0, 60, 70, 0.12);
+            border-color: #a0d0dd;
+        }
+
+        .feature-card .card-icon {
+            display: inline-block;
+            font-size: 1.7rem;
+            margin-bottom: 0.7rem;
+            background: #d6eef6;
+            width: 48px;
+            height: 48px;
+            line-height: 48px;
+            text-align: center;
+            border-radius: 50%;
+            color: #0a4d5a;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #0b3f4a;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.3px;
+        }
+
+        .feature-card p {
+            font-size: 0.98rem;
+            color: #2c4f5a;
+        }
+
+        /* 温和的说明 + 可信锚点 */
+        .trust-section {
+            background: #e1f1f7;
+            padding: 2rem 2rem;
+            border-radius: 28px;
+            margin: 2rem 0 2.5rem;
+            border: 1px solid #b5dae6;
+        }
+
+        .trust-section p {
+            font-size: 1.02rem;
+            margin-bottom: 0.8rem;
+            color: #133e48;
+        }
+
+        .trust-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .trust-section a {
+            color: #0e5c6b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #4f9aaa;
+        }
+
+        .trust-section a:hover {
+            border-bottom-style: solid;
+            color: #05333d;
+        }
+
+        /* FAQ 摘要 (温和节奏) */
+        .faq-brief {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin: 2.2rem 0 2.8rem;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 1.2rem 1.8rem;
+            border-radius: 60px;
+            border: 1px solid #c7e2ec;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+            transition: background 0.15s;
+        }
+
+        .faq-item summary {
+            font-weight: 500;
+            color: #084753;
+            cursor: default;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .faq-item summary::before {
+            content: "▹";
+            color: #2796a8;
+            font-size: 1.1rem;
+        }
+
+        .faq-item p {
+            margin-top: 0.5rem;
+            color: #294f5a;
+            font-size: 0.98rem;
+            padding-left: 1.6rem;
+        }
+
+        /* 结尾 */
+        .closing {
+            text-align: center;
+            border-top: 1px solid #c3dde8;
+            padding-top: 2rem;
+            margin-top: 1rem;
+            color: #1f5b67;
+            font-size: 0.95rem;
+        }
+
+        .closing a {
+            color: #0b5d6b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #5faebb;
+        }
+
+        .closing a:hover {
+            border-bottom-style: solid;
+        }
+
+        /* 移动端微调 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero .tagline {
+                font-size: 1rem;
+            }
+            .intro-note, .trust-section {
+                padding: 1.5rem 1.2rem;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .faq-item {
+                border-radius: 28px;
+                padding: 1rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero {
+                padding: 1.8rem 1rem;
+            }
+            .hero em {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 开场短句：故事感 -->
+        <div class="hero">
+            <em>✦ 站点札记</em>
+            <h1>金年会</h1>
+            <p class="tagline">一处关于信息、交流与可信边界的安静角落</p>
+            <span class="opener">从一次偶然的点击，到一份持久的信任</span>
+        </div>
+
+        <!-- 承接段落：介绍站点，说明可信角度 -->
+        <div class="intro-note">
+            <p>
+                许多人第一次遇见 <a href="https://pages-jinnianhui.com">金年会</a>，是因为一则笔记、一篇技术存档或一个简单的域名。它诞生于一种朴素的动机：将零散的知识与思考整理成可被反复访问的页面。这里没有复杂的后台，只有静态文件、清晰的结构与克制的表达。
+            </p>
+            <p>
+                作为一份个人实践项目，<strong>金年会</strong> 并不提供任何商业服务，也不承载用户数据。它的价值在于一种可供验证的透明——所有页面内容均部署在公开仓库，版本可溯，更新可见。这种形式本身，就是对「可信」最直接的诠释：不依赖黑箱，不隐藏意图。
+            </p>
+        </div>
+
+        <!-- 特点列表（网格卡片） -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="card-icon">📋</div>
+                <h3>结构清晰</h3>
+                <p>页面以模块化方式组织，信息层级分明。无论是技术参考还是随笔记录，都能快速定位。</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon">🔍</div>
+                <h3>可溯源</h3>
+                <p>每份内容均关联提交记录，变更历史公开可查，不存在事后篡改的模糊地带。</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon">🌱</div>
+                <h3>轻量生长</h3>
+                <p>不依赖数据库或动态后台，页面即档案。维护成本极低，却足以容纳持续积累的素材。</p>
+            </div>
+        </div>
+
+        <!-- 可信说明 + 自然嵌入链接 -->
+        <div class="trust-section">
+            <p>
+                在大量网站追求转化与留存的今天，<strong>金年会</strong> 选择了一条更安静的路径：它首先是一组公开的面板，记录着作者对某些话题的梳理。如果你正在寻找一个不追踪、不弹窗、不预设立场的站点，那么 <a href="https://pages-jinnianhui.com">金年会</a> 或许接近你的期待。
+            </p>
+            <p>
+                所有页面均可通过 GitHub Pages 直接访问，域名指向清晰，无中间跳转。这种直接性，也是可信的一部分。
+            </p>
+        </div>
+
+        <!-- FAQ 摘要（非完整列表，但温和承接） -->
+        <div class="faq-brief">
+            <div class="faq-item">
+                <summary>这个站点会收集我的个人信息吗？</summary>
+                <p>不会。金年会 由纯静态页面构成，不嵌入分析脚本、不设置 cookie，也不存储任何访客数据。你所浏览的，只是一个文件集合。</p>
+            </div>
+            <div class="faq-item">
+                <summary>内容多久更新一次？</summary>
+                <p>更新节奏不固定，取决于作者整理与写作的进度。通常每篇内容都有明确的创建日期，你可以在页面末尾或提交记录中查看。</p>
+            </div>
+            <div class="faq-item">
+                <summary>我可以引用或分享这里的文章吗？</summary>
+                <p>当然。所有公开发布的内容均以开放态度分享，引用时注明来源即可。具体许可信息见各页脚注。</p>
+            </div>
+        </div>
+
+        <!-- 温和结尾 -->
+        <div class="closing">
+            <p>— 希望你在 <a href="https://pages-jinnianhui.com">金年会</a> 找到值得停留的文字 —</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">由静态页面与持续的好奇心驱动</p>
+        </div>
+    </div>
+</body>
+</html>
